@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { uploadMovie, uploadTrailer } from "../../api/movie";
-import { useNotification } from "../../hooks";
+import { useAuth, useNotification } from "../../hooks";
 import { useDropzone } from "react-dropzone";
 import { FiUploadCloud } from "react-icons/fi";
 import { FileUploader } from "react-drag-drop-files";
@@ -13,6 +13,8 @@ export default function MovieUploader({ setPoster, setFile,setVideoInfo,admin })
   const [videoUploaded, setVideoUploaded] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
   const { updateNotification } = useNotification();
+  const {authInfo} = useAuth() 
+
 
   const handleTypeError = (error) => {
     updateNotification("error", error);
@@ -36,7 +38,7 @@ export default function MovieUploader({ setPoster, setFile,setVideoInfo,admin })
   };
 
   const handleChange = (file) => {
-    if(true){
+    if(!admin){
       return  updateNotification("error",
       "You are Not An Admin Please Login From Admin Account to Perform Admin Operation"
     );
