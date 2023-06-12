@@ -6,7 +6,7 @@ import { FiUploadCloud } from "react-icons/fi";
 import { FileUploader } from "react-drag-drop-files";
 import { MdFileDownloadDone } from "react-icons/md"
 
-export default function MovieUploader({ setPoster, setFile,setVideoInfo }) {
+export default function MovieUploader({ setPoster, setFile,setVideoInfo,admin }) {
   const [paths, setPaths] = useState([]);
 
   const [videoSelected, setVideoSelected] = useState(false);
@@ -19,7 +19,7 @@ export default function MovieUploader({ setPoster, setFile,setVideoInfo }) {
   };
 
   const handleUploadTrailer = async (data) => {
-    if(true){
+    if(!admin){
       return  updateNotification("error",
       "You are Not An Admin Please Login From Admin Account to Perform Admin Operation"
     );
