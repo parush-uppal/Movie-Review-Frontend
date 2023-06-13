@@ -58,6 +58,12 @@ export default function Filters({setYearTrue,setYearArr,typeC,genresC}) {
   console.log(title)
   typeC(title)
 }
+
+const handelClear= (e) =>{
+  genresC(null)
+  typeC(null)
+  setYearTrue(false)
+}
  
 
   const Filter = [
@@ -76,11 +82,7 @@ export default function Filters({setYearTrue,setYearArr,typeC,genresC}) {
       onchange:handleGenres,
       items: Genres,
     },
-    { 
-      value: rates,
-      onchange: setRates,
-      items: RatesData,
-    },
+
   ];
   return (
     <div className="my-6 bg-dry border text-dryGray border-gray-800 grid md:grid-cols-4 grid-cols-2 lg:gap-12 gap-2 rounded p-6">
@@ -93,7 +95,9 @@ export default function Filters({setYearTrue,setYearArr,typeC,genresC}) {
                     <FaAngleDown className="w-5 h-5" aria-hidden="true"/>
                 </span>
                 </span>
+               
             </Listbox.Button>
+            
             <Transition as={Fragment} leave="transition ease-in duration-100" leaveFrom="opacity-100" leaveTo="opacity-0">
               <Listbox.Options className="absolute z-10 mt-1 max-h-60 w-full bg-white border border-gray-800 text-dryGray rounded-md shadow-lg mx-h-60 ring-opacity-5 overflow-auto focus:outline sm:text-sm">
                { item.items.map((items,index)=>(
@@ -112,12 +116,21 @@ export default function Filters({setYearTrue,setYearArr,typeC,genresC}) {
                   </>
                 )}
                 </Listbox.Option>
+                
                ))}
+               
               </Listbox.Options>
             </Transition>
+            
           </div>
+          
         </Listbox>
       ))}
+       <div className="flex gap-5 items-center">
+             <div onClick={handelClear} className="bg-subMain hover:text-main trasnitions text-white px-10 cursor-pointer py-3 rounded font-medium sm:text-sm text-xs">
+            Clear All Filters
+             </div>
+           </div>
     </div>
   );
 }

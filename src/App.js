@@ -27,6 +27,7 @@ import Aos from "aos";
 import ActorUpload from "./components/models/ActorUpload";
 import MobileFooter from "./components/user/MobileFooter";
 import Footer from "./components/user/Footer";
+import SearchMovies from "./components/Admin/SearchMovies";
 
 export default function App() {
   Aos.init();
@@ -58,6 +59,7 @@ export default function App() {
         <Route path="/admin/addmovie" element={<AddMovie admin={isAdmin} />} />
         <Route path="/admin/updatemovie" element={<UpdateMovie admin={isAdmin}/>} />
         <Route path="/admin/actor" element={<Actors admin={isAdmin}/>} />
+        <Route path="/search" element={<SearchMovies />} />
         <Route path="/admin/add/actor" element={<ActorUpload admin={isAdmin}/>} />
         <Route path="*" element={<NotFound />} />
       </Routes>

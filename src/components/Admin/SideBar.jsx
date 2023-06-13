@@ -71,7 +71,7 @@ export default function SideBar({ children }) {
         data-aos-delay="10"
         data-aos-offset="200"
          className="col-span-6 rounded-md bg-dry border border-gray-800 p-6 ">
-       {!isAdmin? <p className='text-subMain text-center mb-5'>You are Not and Admin and For you this admin pannel is only for demostration purpose only Please Login with admin account to perform actual CRUD Operation</p>:null}
+       {!isAdmin? <p className='text-subMain text-center mb-5'>You are Not an Admin and For you this admin pannel is only for demostration purpose. Please Login with admin account to perform actual CRUD Operation</p>:null}
           {children}
         </div>
       </div>

@@ -184,10 +184,44 @@ export const getSingleReview = async (id) => {
   }
 }; 
 
-export const postReview = async (id,content,rating,user) => {
+export const updateReview = async (reviewId, reviewData) => {
+  const token = getToken();
   try {
-    const { data } = await client.post("/review/add/" + id,{
-       content,rating,user
+    const { data } = await client.patch(`/review/${reviewId}`, reviewData, {
+      headers: {
+        authorization: "Bearer " + token,
+      },
+    });
+    return data;
+  } catch (error) {
+    return catchError(error);
+  }
+};
+
+
+export const postReview  = async (movieId, reviewData) => {
+  console.log(movieId)
+  const token = getToken();
+  try {
+    const { data } = await client.post(`/review/add/${movieId}`, reviewData, {
+      headers: {
+        authorization: "Bearer " + token,
+      },
+    });
+    console.log(data)
+    return data;
+  } catch (error) {
+    return catchError(error);
+  }
+};
+
+export const deleteReview = async (reviewId) => {
+  const token = getToken();
+  try {
+    const { data } = await client.delete(`/review/${reviewId}`, {
+      headers: {
+        authorization: "Bearer " + token,
+      },
     });
     return data;
   } catch (error) {

@@ -77,8 +77,14 @@ export default function SignIn() {
         type="password"
         bg={true}
       />
+      <div>
       <div className="text-right text-gray-400 hover:underline hover:text-gray-100">
-          <Link to="/auth/signup"> Already a User Sign Up</Link>
+       
+          <Link to="/auth/signup"> Not A User Sign Up</Link>
+        </div>
+        <div className=" text-center my-2 text-gray-400 hover:underline hover:text-gray-100">
+          <Link to="/auth/forget-password"> Forgot Password</Link>
+        </div>
         </div>
       <button 
         onClick={handleSubmit}

@@ -8,13 +8,14 @@ export default function Uploader({setPoster,setFile}) {
     
   const { getRootProps, getInputProps } = useDropzone({
     multiple: false,
-    maxSize: 100000,
+    maxSize: 5000000,
     accept: {
         'image/jpg': ['.jpg'],
         'image/png': ['.png'],
         'image/jpeg': ['.jpeg'],
       },
     onDrop: (acceptedFiles) => {
+         console.log(acceptedFiles)
          const url = URL.createObjectURL(acceptedFiles[0]);
          setPoster(url)
          setFile(acceptedFiles[0])

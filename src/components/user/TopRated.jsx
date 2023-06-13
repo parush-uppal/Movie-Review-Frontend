@@ -38,10 +38,10 @@ export default function TopRated() {
     fetchSeries();
   }, []);
   return (
-    <div>
+    <div className="">
      { movies.length ? <div className="mt-5" >
         <Titles title="Popular Movies" Icon={BsCollectionFill} />
-        <div className="grid sm:mt-12 mt-6 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 ">
+        <div className="grid sm:mt-12 mt-6 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 lg:px-5 ">
         {movies.map((movie,index) => {
           return <MovieDisplayContainer key={index} movie={movie}/> ;
         })}
@@ -49,7 +49,7 @@ export default function TopRated() {
       </div>:""}
      { series.length ? <div className="mt-5">
         <Titles title="Popular Web Series" Icon={BsCollectionFill} />
-        <div className="grid sm:mt-12 mt-6 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 ">
+        <div className="grid sm:mt-12 mt-6 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 lg:px-5  ">
         {series.map((movie,index) => {
           return <MovieDisplayContainer key={index} movie={movie}/> ;
         })}
@@ -57,7 +57,7 @@ export default function TopRated() {
       </div>:""}
     { shows.length ? <div className="mt-5">
         <Titles title="Popular TV Shows" Icon={BsCollectionFill} />
-        <div className="grid sm:mt-12 mt-6 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 ">
+        <div className="grid sm:mt-12 mt-6 xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-10 lg:px-5  ">
         {shows.map((movie,index) => {
           return <MovieDisplayContainer key={index} movie={movie}/> ;
         })}

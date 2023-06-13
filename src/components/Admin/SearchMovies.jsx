@@ -4,6 +4,7 @@ import { searchMovieForAdmin, updateMovie } from "../../api/movie";
 import { useNotification } from "../../hooks";
 import MovieListItem from "../MovieListItem";
 import NotFoundText from "../NotFoundText";
+import MovieDisplayContainer from "../user/MovieDisplayContainer";
 
 export default function SearchMovies() {
   const [movies, setMovies] = useState([]);
@@ -27,37 +28,21 @@ export default function SearchMovies() {
     setMovies([...results]);
   };
 
-  const handleAfterDelete = (movie) => {
-    const updatedMovies = movies.filter((m) => m.id !== movie.id);
-    setMovies([...updatedMovies]);
-  };
-
-  const handleAfterUpdate = (movie) => {
-    const updatedMovies = movies.map((m) => {
-      if (m.id === movie.id) return movie;
-      return m;
-    });
-    setMovies([...updatedMovies]);
-  };
-
   useEffect(() => {
-    if (query.trim()) searchMovies(query);
-  }, [query,movies]);
+    if (query?.trim()) searchMovies(query);
+  }, [query]);
 
   return (
-    <div className="p-5 space-y-3">
-      <NotFoundText text="Record not found!" visible={resultNotFound} />
+    <div className=" h-full w-full p-5 space-y-3">
+      <NotFoundText text="NO MOVIE FOUND!" visible={resultNotFound} />
+      <div className="grid sm:mt-10 mt-6 xl:grid-cols-4 2xl:grid-cols-5 lg:grid-cols-3 sm:grid-cols-2 gap-6 lg:px-5">
       {!resultNotFound &&
-        movies.map((movie) => {
+        movies.map((movie,idx) => {
           return (
-            <MovieListItem
-              movie={movie}
-              key={movie.id}
-              afterDelete={handleAfterDelete}
-              afterUpdate={handleAfterUpdate}
-            />
+            <MovieDisplayContainer key={idx} movie={movie}/>
           );
         })}
+    </div>
     </div>
   );
 }

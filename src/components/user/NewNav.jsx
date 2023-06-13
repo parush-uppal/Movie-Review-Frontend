@@ -1,11 +1,34 @@
-import React, { useEffect } from "react";
-import { Link, NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { FaHeart, FaSearch } from "react-icons/fa";
 import { CgUser } from "react-icons/cg";
 import { useAuth } from "../../hooks";
+import { AiOutlineClose } from "react-icons/ai";
 
 export default function NewNav() {
   const { authInfo, handleLogout, isAuth } = useAuth();
+  const [value, setValue] = useState("");
+  
+  const navigate = useNavigate()
+
+  const handleSearchSubmit = (query) => {
+    if (!query.trim()) return;
+    console.log("svd")
+    navigate("/search?title=" + query);
+  };
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    handleSearchSubmit(value);
+  };
+
+  
+
+  const handleReset = () => {
+    setValue("");
+    navigate("/")
+    setValue("")
+  };
+
 
   const hover = "hover:text-subMain transitions text-white ";
   const Hover = ({ isActive }) => (isActive ? "text-subMain" : hover);
@@ -23,17 +46,31 @@ export default function NewNav() {
         </div>
         <div className="col-span-3">
           <form className="w-full text-sm bg-dryGray rounded flex-btn gap-4">
-            <button
+            
+            <input
+              type="text"
+              placeholder="Search Movies For Here"
+              value={value}
+              onChange={({ target }) => setValue(target.value)}
+              className="font-medium placeholder:text-border text-sm w-11/12 h-12 bg-transparent border-none px-2 text-black"
+            />
+             
+      {value!=""? <button
+          
+          type="button"
+          onClick={handleReset}
+          className=" text-black "
+        >
+          <AiOutlineClose />
+        </button>
+  :""}
+             <button
               type="submit"
+              onClick={handleOnSubmit}
               className="bg-subMain text-white w-12 flex-colo h-12 rounded"
             >
               <FaSearch />
             </button>
-            <input
-              type="text"
-              placeholder="Search Movies For Here"
-              className="font-medium placeholder:text-border text-sm w-11/12 h-12 bg-transparent border-none px-2 text-black"
-            />
           </form>
         </div>
         <div className="col-span-3 font-medium text-sm hidden xl:gap-14 2xl:gap-15 justify-between lg:flex xl:justify-evenly items-center">
