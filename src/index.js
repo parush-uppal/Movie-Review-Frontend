@@ -12,7 +12,7 @@ import "./index.css";
 import ContextProviders from "./context";
 
 ReactDOM.render(
-  <BrowserRouter basename="/pages">
+  <BrowserRouter>
     <ContextProviders>
       <App />
     </ContextProviders>
